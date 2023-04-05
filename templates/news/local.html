@@ -1,0 +1,47 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}Местные новости{% endblock title %}
+
+
+{% block content %}
+    {% for local in local_news %}
+        <div class="container">
+            <div class="col-md-4 center-block">
+                <div class="row mb-3">
+                    <a href="{{ local.get_absolute_url }}">
+                        <img src="{{ local.image.url }}" style="width: 90%">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <h3>
+                        <a href="{{ local.get_absolute_url }}">{{ local.title }}</a>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-md-4">#}
+{#                <div class="card-group">#}
+{#                    <div class="card border-primary bg-info m-1">#}
+{#                      <img src="{{ local.image.url }}" class="card-img-left" alt="..." >#}
+{#                      <div class="card-body">#}
+{#                        <h3 class="card-title">{{ local.title }}</h3>#}
+{#                        <p class="card-text">{{ local.body | truncatewords:10 }}</p>#}
+{#                        <a href="{% url 'local_news_page' %}" class="btn btn-primary">Go somewhere</a>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#    </div>#}
+
+        {% endfor %}
+{% endblock content%}

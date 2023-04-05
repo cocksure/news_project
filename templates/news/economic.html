@@ -1,0 +1,22 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}Новости экономикии{% endblock title %}
+
+
+{% block content %}
+    {% for econom in economic_news %}
+        <div class="container">
+            <div class="col-md-4 center-block">
+                <div class="row mb-3">
+                    <img  src="{{ econom.image.url }}" style="width: 90%">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <h3>{{ econom.title }}</h3>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content%}

@@ -1,0 +1,33 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Профиль администратора {% endblock title %}
+
+
+{% block content %}
+    <div class="container m-3"><br>
+        <h1>Страница админов</h1>
+        <h3>Админы</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="success">
+                <th>Username</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in admin_users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <h2 class="text-primary m-3">
+        <a href="{% url 'news_create' %}" class="btn btn-primary btn-lg" style="width: 100%"> + Добавить новость</a>
+    </h2>
+    </div>
+{% endblock content %}

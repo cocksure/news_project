@@ -1,0 +1,28 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Логин {% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+        <h2>Войти в сайт</h2>
+        <form  method="post">{% csrf_token %}
+            {{ form.as_p }}
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-info form-btn btn-shadow" style="width: 100%; border-radius: 5px">Войти</button>
+            </div>
+            <div class="col-md-6 ">
+                <a href="{% url 'user_register' %}"   class="btn btn-success form-btn btn-shadow" style="width: 100%; border-radius: 5px">Регистрация</a>
+            </div>
+        </div>
+            <h5>
+                <a  href="{% url 'password-reset' %}">
+                    Забыли пароль?
+                </a>
+            </h5>
+        </form>
+    </div>
+
+{% endblock content %}

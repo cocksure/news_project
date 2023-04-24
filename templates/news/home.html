@@ -1,5 +1,6 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load hitcount_tags %}
 {% block title %} Главная страница {% endblock title %}
 
 {% block content %}
@@ -28,7 +29,11 @@
                 {% for news in news_list %}
               <li>
                 <div class="media"> <a href="{{ news.get_absolute_url }}" class="media-left"> <img alt="" src="{{ news.image.url }}"> </a>
-                  <div class="media-body"> <a href="{{ news.get_absolute_url }}" class="catg_title">{{ news.title }}</a> </div>
+                  <div class="media-body">
+                      <a href="{{ news.get_absolute_url }}" class="catg_title">{{ news.title }}</a><br>
+                      <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for news %}
+                  </div>
+
                 </div>
               </li>
                 {% endfor %}
@@ -56,6 +61,7 @@
                   <figure class="bsbig_fig"> <a href="{{ main.get_absolute_url }}" class="featured_img"> <img alt="" src="{{ main.image.url }}"> <span class="overlay"></span> </a>
                     <figcaption> <a href="{{ main.get_absolute_url }}">{{ main.title | truncatewords:25 }}</a> </figcaption>
                     <p>{{ main.body | truncatewords:25 }}</p>
+                      <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for main %}
                   </figure>
                 </li>
                       {% endif %}
@@ -69,6 +75,7 @@
                 <li>
                   <div class="media wow fadeInDown"> <a href="{{ politic.get_absolute_url }}" class="media-left"> <img alt="" src="{{ politic.image.url }}"> </a>
                     <div class="media-body"> <a href="{{ politic.get_absolute_url }}" class="catg_title"> {{ politic.title }}</a> </div>
+                      <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for politic %}
                   </div>
                 </li>
                       {% endif %}
@@ -86,7 +93,8 @@
                           <li>
                             <figure class="bsbig_fig"> <a href="{{ sport.get_absolute_url }}" class="featured_img"> <img alt="" src="{{ sport.image.url }}"> <span class="overlay"></span> </a>
                               <figcaption> <a href="{{ sport.get_absolute_url }}">{{ sport.title }}</a> </figcaption>
-                              <p>{{ sport.body | truncatewords:10 }}</p>
+                              <p>{{ sport.body | truncatewords:10 }} <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for sport %}</p>
+
                             </figure>
                           </li>
                         {% endif %}
@@ -97,7 +105,10 @@
                         {% if forloop.counter > 1 %}
                   <li>
                     <div class="media wow fadeInDown"> <a href="{{ sport.get_absolute_url }}" class="media-left"> <img alt="" src="{{ sport.image.url }}"> </a>
-                      <div class="media-body"> <a href="{{ sport.get_absolute_url }}" class="catg_title">{{ sport.title }}</a> </div>
+                      <div class="media-body">
+                          <a href="{{ sport.get_absolute_url }}" class="catg_title">{{ sport.title }}</a>
+                          <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for sport %}
+                      </div>
                     </div>
                   </li>
                         {% endif %}
@@ -115,6 +126,7 @@
                     <figure class="bsbig_fig wow fadeInDown"> <a href="{{ econom.get_absolute_url }}" class="featured_img"> <img alt="" src="{{ econom.image.url }}"> <span class="overlay"></span> </a>
                       <figcaption> <a href="{{ econom.get_absolute_url }}">{{ econom.title }}</a> </figcaption>
                       <p>{{ econom.body | truncatewords:10 }}</p>
+                         <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for econom %}
                     </figure>
                   </li>
                         {% endif %}
@@ -125,7 +137,10 @@
                         {% if forloop.counter > 1 %}
                           <li>
                             <div class="media wow fadeInDown"> <a href="{{ econom.get_absolute_url }}" class="media-left"> <img alt="" src="{{ econom.image.url }}"> </a>
-                              <div class="media-body"> <a href="{{ econom.get_absolute_url }}" class="catg_title"> {{ econom.title }}</a> </div>
+                              <div class="media-body">
+                                  <a href="{{ econom.get_absolute_url }}" class="catg_title"> {{ econom.title }}</a>
+                                  <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for econom %}
+                              </div>
                             </div>
                           </li>
                         {% endif %}

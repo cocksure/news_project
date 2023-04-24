@@ -1,0 +1,16 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Регистрация успешно выполнено{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h1>
+        {{ new_user.first_name }}, вы успешно проходили регистрацию
+        </h1>
+        <p>
+            тепер можете <a href="{% url 'login' %}"><span style="color: #0ab20a">войти</span>  </a> в сайт
+        </p>
+
+    </div>
+{% endblock content %}

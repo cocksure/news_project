@@ -6,17 +6,20 @@
 
 {% block content %}
     {% for econom in economic_news %}
-        <div class="container">
-            <div class="col-md-4 center-block">
-                <div class="row mb-3">
-                    <img  src="{{ econom.image.url }}" style="width: 90%">
+        <a href="{% url 'news_detail_page' econom.slug %}">
+            <div class="container">
+                <div class="border_list_style">
+                    <div class="row">
+                        <div class="col-md-4 center-block">
+                            <img class="img-thumbnail" src="{{ econom.image.url }}" style="width: 80%">
+                        </div>
+                        <div class="col-md-8">
+                                <h3>{{ econom.title }}</h3>
+                                <p>{{ econom.body | truncatewords:35 }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-8">
-                <div class="row">
-                    <h3>{{ econom.title }}</h3>
-                </div>
-            </div>
-        </div>
+        </a>
     {% endfor %}
 {% endblock content%}

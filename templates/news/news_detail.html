@@ -1,13 +1,82 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load hitcount_tags %}
 
 {% block title %} {{ news.title }} {% endblock title %}
 
 {% block content %}
     <div class="container">
-        <h1>{{ news.title }}</h1>
-        <img src="{{ news.image.url }}">
-        <p>{{ news.body }}</p>
+        <h2>{{ news.title }}</h2><br>
+        <h5>
+            {{ news.publish_time }}<br><br>
+            <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for news %}
+        </h5>
+        <hr>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <img class=" img-rounded" src="{{ news.image.url }}" alt="detail_img">
+
+            </div>
+            <div class="col-md-4" >
+                {% if user.is_authenticated %}
+                    <div class="panel panel-info text-center" style="width: 100%">
+                      <div class="panel-heading">Оставить коментарии</div>
+                          <div class="panel-body">
+                                <form method="POST">{% csrf_token %}
+                                    {{ comment_form.as_p }}
+                                    <button type="submit" class="btn btn-success btn-shadow btn-block" style="border-radius: 5px">Отправить</button>
+                                </form>
+                          </div>
+                    </div>
+                    {% else %}
+                        <div class="panel panel-info text-center" style="width: 100%">
+                      <div class="panel-heading">Оставить коментарии</div>
+                          <div class="panel-body">
+                                <form method="POST">{% csrf_token %}
+                                    {{ comment_form.as_p }}
+                                    <p class="text-danger">Только зарегистрированные пользователи могут оставлять комментарии</p>
+                                </form>
+                          </div>
+                    </div>
+                {% endif %}
+                {% if request.user.is_authenticated and request.user.is_superuser %}
+                    <div class="row">
+                        <a class="btn btn-info btn-shadow" href="{% url 'news_update' news.slug %}" style="width: 100%; border-radius: 5px">Изменить новость</a>
+                    </div>
+                    <div class="row">
+                        <a class="btn btn-info btn-shadow" href="{% url 'news_delete' news.slug %}" style="width: 100%; border-radius: 5px">Удалить новость</a>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="container">
+        <p class="text-left" style="border-radius: 7px; border: gray solid 1px; padding: 10px">{{ news.body }}</p>
+        <hr>
+    </div>
+
+
+    <div class="container">
+    <h4>Коментарии:</h4><br>
+    Количество коментариев: {{ comment_count }}<br><br>
+    <div class="container">
+        {% for comment in comments %}
+        <div class="comments">
+            <p style="font-weight: bold">
+                {{ comment.user|upper }}
+                <span class="text=muted">
+                    {{ comment.created_time }}
+                </span>
+            </p>
+        {{ comment.body | linebreaks }}
+        </div>
+    {% endfor %}
     </div>
 
 {% endblock content %}

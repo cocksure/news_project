@@ -6,21 +6,20 @@
 
 {% block content %}
     {% for internet in internet_news %}
-        <div class="container">
-            <div class="col-md-4 center-block">
-                <div class="row mb-3">
-                    <a href="{{ internet.get_absolute_url }}">
-                        <img  src="{{ internet.image.url }}" style="width: 90%">
-                    </a>
+        <a href="{% url 'news_detail_page' internet.slug %}">
+            <div class="container">
+                <div class="border_list_style">
+                    <div class="row">
+                        <div class="col-md-4 center-block">
+                            <img class="img-thumbnail" src="{{ internet.image.url }}" style="width: 80%">
+                        </div>
+                        <div class="col-md-8">
+                                <h3>{{ internet.title }}</h3>
+                                <p>{{ internet.body | truncatewords:35 }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-8">
-                <div class="row">
-                    <a href="{{ internet.get_absolute_url }}">
-                        <h3>{{ internet.title }}</h3>
-                    </a>
-                </div>
-            </div>
-        </div>
+        </a>
     {% endfor %}
 {% endblock content%}

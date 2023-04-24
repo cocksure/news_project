@@ -1,0 +1,37 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Профиль ползователя {% endblock title %}
+
+
+{% block content %}
+    <div class="container m-3"><br>
+        <div class="row text-center">
+            <img src="{{ profile.photo.url }}" style="width: 100px; border-radius: 50%">
+            <h4>Год рождения: {{ profile.date_of_birth }}</h4>
+        </div>
+
+{#      <h3> Добро пожаловать {{ user.username }}</h3>#}
+
+        <form class="form-group mt-3">
+            <label class="">Username</label> <input class="form-control " value="{{ user.username }}" readonly>
+            <label class="">Email</label> <input class="form-control" value="{{ user.email }}" readonly>
+            <label class="">Имя</label> <input class="form-control" value="{{ user.first_name }}" readonly>
+            <label class="">Фамилия</label> <input class="form-control" value="{{ user.last_name }}" readonly>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h2><a class="btn btn-success" href="{% url 'password-change' %}" style="width: 100%; border-radius: 5px">Изменит пароль</a></h2>
+                </div>
+                <div class="col-md-6">
+                    <h2><a class="btn btn-success" href="{% url 'edit_user_information' %}" style="width: 100%; border-radius: 5px">Изменит данные профиля</a></h2>
+                </div>
+                <div class="col-md-12">
+                    <h2>
+                        <a class="btn btn-danger" href="{% url 'logout' %}" style="width: 100%; border-radius: 5px">Выход с сайта</a>
+                    </h2>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

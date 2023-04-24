@@ -1,0 +1,15 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} logout {% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+        <h2>
+        Вы вышли из сайта . <a href="{% url 'login' %}" class="btn-info form-btn">Войти в сайт</a>
+    </h2>
+    </div>
+
+
+{% endblock content %}

@@ -6,21 +6,22 @@
 
 {% block content %}
     {% for politic in politic_news %}
-        <div class="container">
-            <div class="col-md-4 center-block">
-                <div class="row mb-3">
-                    <a href="{{ politic.get_absolute_url }}">
-                        <img  src="{{ politic.image.url }}" style="width: 90%">
-                    </a>
+        <a href="{% url 'news_detail_page' politic.slug %}">
+            <div class="container">
+                <div class="border_list_style">
+                    <div class="col-md-4 center-block">
+                        <div class="row">
+                            <img class="img-rounded" src="{{ econom.image.url }}" style="width: 80%">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <h3>{{ politic.title }}</h3>
+                            <p>{{ politic.body | truncatewords:35 }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-8">
-                <div class="row">
-                    <a href="{{ politic.get_absolute_url }}">
-                        <h3>{{ politic.title }}</h3>
-                    </a>
-                </div>
-            </div>
-        </div>
+        </a>
     {% endfor %}
 {% endblock content%}

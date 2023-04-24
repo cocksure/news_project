@@ -1,22 +1,21 @@
 {% load static %}
-
 <!DOCTYPE html>
-<html>
-<head>
-<title>{% block title %} {% endblock title %}</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/font.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/li-scroller.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/theme.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<html lang="">
 
+<head>
+    <title>{% block title %} {% endblock title %}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/li-scroller.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/theme.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
@@ -34,10 +33,23 @@
                   <li><a href="{% url 'home_page' %}">Главная страница</a></li>
                   <li><a href="#">О нас</a></li>
                   <li><a href="{% url 'contact_page' %}">Связь</a></li>
+                  {% if user.is_authenticated and user.is_superuser %}
+                        <li><a href="{% url 'admin_page' %}">Админы</a> </li>
+                  {% endif %}
+
                 </ul>
               </div>
               <div class="header_top_right">
-                <p>{% now "jS F Y H:i" %}</p>
+                  {% if request.user.is_authenticated %}
+                  <p>
+                      <a href="{% url 'user_profile'%}" style="color: greenyellow">Мой профил | </a>
+                      <a href="{% url 'logout'%}" style="color: brown">Выйти</a>
+                  </p>
+
+                  {% else %}
+                  <p><a href="{% url 'login'%}" style="color: greenyellow">Войти в сайт</a></p>
+                  {% endif %}
+              <p>{% now "jS F Y H:i" %}</p>
               </div>
             </div>
           </div>
@@ -62,6 +74,11 @@
               <li><a href="{% url 'sport_news_page' %}">Спорт</a></li>
               <li><a href="{% url 'economic_news_page' %}">Экономика</a></li>
               <li><a href="{% url 'contact_page' %}">Связь с нами</a></li>
+            <li style="margin-top: 7px; ">
+                <form method="get" action="{% url 'search_results' %}">
+                  <input type="search" name="q" placeholder="Поиск" class="form-control">
+                </form>
+            </li>
             </ul>
           </div>
         </nav>
@@ -72,7 +89,7 @@
             <div class="latest_newsarea"> <span>Latest News</span>
               <ul id="ticker01" class="news_sticker">
                   {% for news in latest_news %}
-                    <li><a href="#"><img src="{{ news.image.url }}" alt="">{{ news.title }}</a></li>
+                    <li><a href="{% url 'news_detail_page' news.slug %}"><img src="{{ news.image.url }}" alt="">{{ news.title }}</a></li>
                   {% endfor %}
               </ul>
               <div class="social_area">
@@ -150,7 +167,6 @@
     <script src="{% static 'js/custom.js' %}"></script>
     <script src="{% static 'js/html5shiv.min.js' %}"></script>
     <script src="{% static 'js/respond.min.js' %}"></script>
-    </script>
 {% endblock javascript %}
 </body>
 </html>

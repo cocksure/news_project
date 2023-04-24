@@ -1,0 +1,14 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Добавить новость {% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="text-center">Создать новость</h2>
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-info">Добавить</button>
+        </form>
+    </div>
+{% endblock content %}

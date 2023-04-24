@@ -1,0 +1,29 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}Результаты поиска{%endblock title%}
+
+
+{% block content %}
+
+    <div class="container ">
+        <h2>Результаты поиска</h2><hr>
+            <div class="list-group">
+                {% for news in Все_новости %}
+                    <div class="row search_result border_list_style">
+                        <div class="col-md-2">
+                            <img src="{{ news.image.url }}" style="width: 100%" class="img-thumbnail">
+                        </div>
+                        <div class="col-md-10">
+                            <h3>
+                                <a href="{% url 'news_detail_page' news.slug %}" class="">{{ news.title | truncatewords:12 }}</a>
+                            </h3>
+                            <p>{{ news.body | truncatewords:30 }}</p>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
+
+{% endblock content %}

@@ -1,5 +1,4 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.http import HttpResponse
@@ -7,17 +6,16 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, UpdateView, CreateView, DeleteView
 from hitcount.utils import get_hitcount_model
-
 from news_project.custom_permissions import OnlyLoggedSuperUser
 from .models import News, Category
-from .forms import ContactForm, CommentForm
-from hitcount.views import HitCountDetailView, HitCountMixin
+from .forms import ContactForm, CommentForm, NewsForm, NewsUpdateForm
+from hitcount.views import HitCountMixin
 
 
 def news_list(request):
-    news_list = News.objects.filter(status=News.Status.Published)
+    newslist = News.objects.filter(status=News.Status.Published)
     context = {
-        "news_list": news_list
+        "news_list": newslist
     }
     return render(request, "news/news_list.html", context)
 
@@ -25,7 +23,7 @@ def news_list(request):
 def news_detail(request, news):
     news = get_object_or_404(News, slug=news, status=News.Status.Published)
     context = {}
-    #hitcount logika
+    # hitcount logika
     hit_count = get_hitcount_model().objects.get_for_object(news)
     comments = news.comments.filter(active=True)
     hits = hit_count.hits
@@ -43,12 +41,12 @@ def news_detail(request, news):
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
-            #yengi comment obyekt yaratadi lekin databasega save qimidi
+            # yengi comment obyekt yaratadi lekin databasega save qimidi
             new_comment = comment_form.save(commit=False)
             new_comment.news = news
-            #comment egasini request yuvorvotgan odamga boglab qoyish
+            # comment egasini request yuvorvotgan odamga boglab qoyish
             new_comment.user = request.user
-            #endi databasega save qilish
+            # endi databasega save qilish
             new_comment.save()
             comment_form = CommentForm()
     else:
@@ -64,12 +62,12 @@ def news_detail(request, news):
     return render(request, "news/news_detail.html", context)
 
 
-def homePageView(request):
+def home_page_view(request):
     categories = Category.objects.all()
-    news_list = News.published.get_queryset().order_by('-publish_time')[:10]
+    newslist = News.published.get_queryset().order_by('-publish_time')[:10]
     politic_news = News.published.all().filter(category__name="Политика").order_by('-publish_time')[1:5]
     context = {
-        'news_list': news_list,
+        'news_list': newslist,
         'categories': categories,
         'politic_news': politic_news
     }
@@ -122,7 +120,7 @@ class InternetNewsView(ListView):
     context_object_name = 'internet_news'
 
     def get_queryset(self):
-        news = self.model.published.all().filter(category__name='Интернет')
+        news = self.model.published.all().filter(category__id=5)
         return news
 
 
@@ -132,7 +130,8 @@ class LocalNewsView(ListView):
     context_object_name = 'local_news'
 
     def get_queryset(self):
-        news = self.model.published.all().filter(category__name='Общество')
+        news = self.model.published.all().filter(category__id=3)
+        print(news)
         return news
 
 
@@ -142,7 +141,7 @@ class SportNewsView(ListView):
     context_object_name = 'sport_news'
 
     def get_queryset(self):
-        news = self.model.published.all().filter(category__name='Спорт')
+        news = self.model.published.all().filter(category__id=2)
         return news
 
 
@@ -152,7 +151,7 @@ class EconomicNewsView(ListView):
     context_object_name = 'economic_news'
 
     def get_queryset(self):
-        news = self.model.published.all().filter(category__name='Экономика')
+        news = self.model.published.all().filter(category__id=4)
         return news
 
 
@@ -162,13 +161,13 @@ class PoliticNewsView(ListView):
     context_object_name = 'politic_news'
 
     def get_queryset(self):
-        news = self.model.published.all().filter(category__name='Политика')
+        news = self.model.published.all().filter(category__id=1)
         return news
 
 
 class NewsUpdateView(OnlyLoggedSuperUser, UpdateView):
     model = News
-    fields = ('title', 'body', 'image', 'category', 'status')
+    form_class = NewsForm
     template_name = 'crud/news_edit.html'
 
 
@@ -180,13 +179,13 @@ class NewsDeleteView(OnlyLoggedSuperUser, DeleteView):
 
 class NewsCreateView(OnlyLoggedSuperUser, CreateView):
     model = News
-    fields = ('title', 'slug', 'body', 'image', 'category', 'status')
+    form_class = NewsForm
     template_name = 'crud/news_create.html'
     success_url = reverse_lazy('home_page')
 
 
 @login_required()
-@user_passes_test(lambda u:u.is_superuser)
+@user_passes_test(lambda u: u.is_superuser)
 def admin_page_view(request):
     admin_users = User.objects.filter(is_superuser=True)
 

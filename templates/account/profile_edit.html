@@ -1,22 +1,21 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %} Изменения информации {% endblock title %}
+{% block title %}{% blocktrans %}Изменения информации{% endblocktrans %}{% endblock title %}
 
 {% block content %}
     <div class="container">
         <h1>
-        Изменения информации
-        </h1>
-        <p>
-            Вы можете изменит ваше данные
-        </p>
+        {% blocktrans %}Изменения информации{% endblocktrans %}
+        </h1><hr>
         <form method="post" enctype="multipart/form-data"> {% csrf_token %}
         {{ user_form.as_p }}
         {{ profile_form.as_p }}
-        <button class="btn btn-primary btn-shadow" type="submit">
-            Изменить
+        <button class="btn btn-primary btn-shadow btn-block" type="submit">
+            {% blocktrans %}Изменить{% endblocktrans %}
         </button>
         </form>
     </div>
+
 {% endblock content %}

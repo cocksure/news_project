@@ -1,16 +1,17 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %} Регистрация успешно выполнено{% endblock title %}
+{% block title %}{% blocktrans %} Регистрация успешно выполнено{% endblocktrans %}{% endblock title %}
 
 {% block content %}
     <div class="container">
         <h1>
-        {{ new_user.first_name }}, вы успешно проходили регистрацию
+        {{ new_user.first_name }}, {% blocktrans %}вы успешно проходили регистрацию{% endblocktrans %}
         </h1>
-        <p>
-            тепер можете <a href="{% url 'login' %}"><span style="color: #0ab20a">войти</span>  </a> в сайт
-        </p>
+        <h4>
+            {% blocktrans %}тепер можете{% endblocktrans %} <a href="{% url 'login' %}"><span style="color: #0ab20a">{% blocktrans %}войти{% endblocktrans %}</span>  </a> {% blocktrans %}в сайт{% endblocktrans %}
+        </h4>
 
     </div>
 {% endblock content %}

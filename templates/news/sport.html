@@ -1,27 +1,25 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Новости Спорта{% endblock title %}
-
+{% block title %}{% blocktrans %}Новости Спорта{% endblocktrans %}{% endblock title %}
 
 {% block content %}
-
     {% for sport in sport_news %}
         <a href="{% url 'news_detail_page' sport.slug %}">
             <div class="container">
                 <div class="border_list_style">
                     <div class="row">
-                        <div class="col-md-4 center-block">
-                            <img class="img-thumbnail" src="{{ sport.image.url }}" style="width: 80%">
+                        <div class="col-md-2 center-block">
+                            <img class="img-thumbnail" src="{{ sport.image.url }}" style="width: 100%" alt="deteail-image">
                         </div>
-                        <div class="col-md-8">
-                            <h3>{{ sport.title }}</h3>
-                            <p>{{ sport.body | truncatewords:35 }}</p>
+                        <div class="col-md-10">
+                            <h3>{{ sport.title | truncatewords:8 }}</h3><hr>
+                            <p>{{ sport.body | truncatewords:10 }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </a>
     {% endfor %}
-
 {% endblock content%}

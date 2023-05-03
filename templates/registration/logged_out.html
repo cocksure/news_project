@@ -1,15 +1,17 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %} logout {% endblock title %}
+{% block title %}{% blocktrans %}Выйти{% endblocktrans %}{% endblock title %}
 
 {% block content %}
 
-    <div class="container">
-        <h2>
-        Вы вышли из сайта . <a href="{% url 'login' %}" class="btn-info form-btn">Войти в сайт</a>
+<div class="container form_login" >
+    <h2>
+        {% blocktrans %}Вы вышли из сайта{% endblocktrans %} .<br><hr>
+        <a href="{% url 'login' %}" class="btn btn-primary btn-block">{% blocktrans %}Войти в сайт{% endblocktrans %}</a>
     </h2>
-    </div>
+</div>
 
 
 {% endblock content %}

@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 django = "*"
+python-gettext = "*"
+gettex = "*"
 
 [dev-packages]
 

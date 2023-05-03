@@ -1,28 +1,45 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %} Логин {% endblock title %}
+{% block title %}{% blocktrans %}Войти{% endblocktrans %}{% endblock title %}
 
 {% block content %}
 
-    <div class="container">
-        <h2>Войти в сайт</h2>
-        <form  method="post">{% csrf_token %}
-            {{ form.as_p }}
-        <div class="row">
-            <div class="col-md-6">
-                <button type="submit" class="btn btn-info form-btn btn-shadow" style="width: 100%; border-radius: 5px">Войти</button>
+        <div class="container">
+        <form class="form_login" method="post" >{% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+                {{ form.username }}
             </div>
-            <div class="col-md-6 ">
-                <a href="{% url 'user_register' %}"   class="btn btn-success form-btn btn-shadow" style="width: 100%; border-radius: 5px">Регистрация</a>
+            <div class="form-group">
+                <label for="{{ form.password.id_for_label }}">Пароль</label>
+                {{ form.password }}
             </div>
-        </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary form-btn btn-shadow" style="width: 100%; border-radius: 5px">Войти</button>
+                </div>
+                <div class="col-md-6 ">
+                    <a href="{% url 'user_register' %}" class="btn btn-primary form-btn btn-shadow" style="width: 100%; border-radius: 5px">Регистрация</a>
+                </div>
+            </div>
             <h5>
-                <a  href="{% url 'password-reset' %}">
-                    Забыли пароль?
+                <a href="{% url 'password-reset' %}">
+                    {% blocktrans %}Забыли пароль{% endblocktrans %}?
                 </a>
             </h5>
         </form>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
     </div>
+
+
+
 
 {% endblock content %}

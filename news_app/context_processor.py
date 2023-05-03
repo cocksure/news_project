@@ -11,3 +11,4 @@ def latest_news(request):
     }
     return context
 
+

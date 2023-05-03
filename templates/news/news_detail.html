@@ -1,6 +1,7 @@
 {% extends 'news/base.html' %}
 {% load static %}
 {% load hitcount_tags %}
+{% load i18n %}
 
 {% block title %} {{ news.title }} {% endblock title %}
 
@@ -14,57 +15,80 @@
         <hr>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <img class=" img-rounded" src="{{ news.image.url }}" alt="detail_img">
-
+<div class="container" style="padding: 10px">
+    <div class="row">
+        <div class="col-md-8">
+            <img class="border-shadow img-rounded img-responsive" src="{{ news.image.url }}" alt="detail_img" style="max-width:100%">
+        </div>
+        <div class="col-md-4">
+            {% if user.is_authenticated %}
+                <div class="panel panel-info text-center">
+                <div class="panel-heading">{% blocktrans %}Оставить комментарий{% endblocktrans %}</div>
+                <div class="panel-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ comment_form.body }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">{% blocktrans %}Submit{% endblocktrans %}</button>
+                    </form>
+                </div>
             </div>
-            <div class="col-md-4" >
-                {% if user.is_authenticated %}
-                    <div class="panel panel-info text-center" style="width: 100%">
-                      <div class="panel-heading">Оставить коментарии</div>
-                          <div class="panel-body">
-                                <form method="POST">{% csrf_token %}
-                                    {{ comment_form.as_p }}
-                                    <button type="submit" class="btn btn-success btn-shadow btn-block" style="border-radius: 5px">Отправить</button>
-                                </form>
-                          </div>
+            {% else %}
+                <div class="panel-info text-center">
+                    <div class="panel-heading">{% blocktrans %}Оставить комментарий{% endblocktrans %}</div>
+                    <div>
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ comment_form.as_p }}
+                            <p class="text-danger">{% blocktrans %}Только зарегистрированные пользователи могут оставлять комментарии{% endblocktrans %}</p>
+                        </form>
                     </div>
-                    {% else %}
-                        <div class="panel panel-info text-center" style="width: 100%">
-                      <div class="panel-heading">Оставить коментарии</div>
-                          <div class="panel-body">
-                                <form method="POST">{% csrf_token %}
-                                    {{ comment_form.as_p }}
-                                    <p class="text-danger">Только зарегистрированные пользователи могут оставлять комментарии</p>
-                                </form>
-                          </div>
-                    </div>
-                {% endif %}
-                {% if request.user.is_authenticated and request.user.is_superuser %}
-                    <div class="row">
-                        <a class="btn btn-info btn-shadow" href="{% url 'news_update' news.slug %}" style="width: 100%; border-radius: 5px">Изменить новость</a>
-                    </div>
-                    <div class="row">
-                        <a class="btn btn-info btn-shadow" href="{% url 'news_delete' news.slug %}" style="width: 100%; border-radius: 5px">Удалить новость</a>
-                    </div>
-                {% endif %}
-
-            </div>
+                </div>
+            {% endif %}
         </div>
     </div>
-    <hr>
 
-    <div class="container">
-        <p class="text-left" style="border-radius: 7px; border: gray solid 1px; padding: 10px">{{ news.body }}</p>
-        <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-left" style="padding: 10px">{{ news.body }}</p>
+        </div>
     </div>
 
+    {% if request.user.is_authenticated and request.user.is_superuser %}
+        <div class="row">
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-shadow btn-block" href="{% url 'news_update' news.slug %}">{% blocktrans %}Изменит новость{% endblocktrans %}</a>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-danger btn-shadow btn-block" href="{% url 'news_delete' news.slug %}">{% blocktrans %}Удалить новость{% endblocktrans %}</a><hr>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+<style>
+    @media (max-width: 1200px) {
+        img {
+            max-width: 80%;
+        }
+    }
+    @media (max-width: 991px) {
+        img {
+            max-width: 100%;
+        }
+        .panel-body {
+            width: 100%;
+        }
+    }
+</style>
+
+
+
 
     <div class="container">
-    <h4>Коментарии:</h4><br>
-    Количество коментариев: {{ comment_count }}<br><br>
+    <h4>{% blocktrans %}Коментарии{% endblocktrans %}:</h4><br>
+    {% blocktrans %}Количество коментариев{% endblocktrans %}: {{ comment_count }}<br><br>
     <div class="container">
         {% for comment in comments %}
         <div class="comments">

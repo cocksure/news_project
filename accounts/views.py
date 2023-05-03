@@ -1,37 +1,38 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordChangeView
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
+from django.urls import reverse, reverse_lazy
 from django.views import View
-
 from .forms import LoginForm, UserRegistrationForm, UserEditForms, ProfileEditForm
 from .models import Profile
+from django.contrib import messages
 
 
-# def user_login(request):
-#     if request.method == "POST":
-#         form = LoginForm(request.POST)
-#         if form.is_valid():
-#             data = form.cleaned_data
-#             user = authenticate(request,
-#                                 username=data['username'],
-#                                 password=data['password'])
-#
-#             if user is not None:
-#                 if user.is_active:
-#                     login(request, user)
-#                     return HttpResponse('Вы успешно вошли в сайт')
-#
-#                 else:
-#                     return HttpResponse('Ваш ползователь не активно')
-#             else:
-#                 return HttpResponse('Логин или парол неверна')
-#
-#     else:
-#         form = LoginForm()
-#
-#     return render(request, 'registration/login.html', {'form': form})
+def user_login(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            user = authenticate(request,
+                                username=data['username'],
+                                password=data['password'])
+
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect(reverse('home_page'))
+                else:
+                    messages.error(request, 'Ваш пользователь не активен')
+            else:
+                messages.error(request, 'Неверный логин или пароль')
+
+    else:
+        form = LoginForm()
+
+    return render(request, 'registration/login.html', {'form': form})
 
 
 @login_required
@@ -59,13 +60,13 @@ def user_register(request):
                 'new_user': new_user
             }
             return render(request, 'account/register_done.html', context)
-
     else:
         user_form = UserRegistrationForm()
-        context = {
-            'user_form': user_form
-        }
-        return render(request, 'account/register.html', context)
+
+    context = {
+        'user_form': user_form
+    }
+    return render(request, 'account/register.html', context)
 
 
 @login_required

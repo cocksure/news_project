@@ -1,21 +1,76 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %} {% endblock title %}
+{% block title %}{% blocktrans %}Регистрация{% endblocktrans %} {% endblock title %}
 
 {% block content %}
-    <div class="container">
-        <h1>
-        Регистрация
-        </h1>
-        <p>
-            Для регистрация заполните форму
-        </p>
-        <form method="post">{% csrf_token %}
-        {{ user_form.as_p }}
-        <button class="btn btn-primary btn-shadow" type="submit">
-            Регистрация
-        </button>
+    <div class="container login_body">
+        <h2>Регистрация</h2>
+        <form class="form_login" method="post">{% csrf_token %}
+            {% if user_form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {% for error in user_form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="form-group{% if user_form.username.errors %} has-error{% endif %}">
+                {{ user_form.username.label_tag }}
+                {{ user_form.username }}
+                {% if user_form.username.errors %}
+                    <div class="help-block">
+                        {% for error in user_form.username.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group{% if user_form.first_name.errors %} has-error{% endif %}">
+                {{ user_form.first_name.label_tag }}
+                {{ user_form.first_name }}
+                {% if user_form.first_name.errors %}
+                    <div class="help-block">
+                        {% for error in user_form.first_name.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group{% if user_form.email.errors %} has-error{% endif %}">
+                {{ user_form.email.label_tag }}
+                {{ user_form.email }}
+                {% if user_form.email.errors %}
+                    <div class="help-block">
+                        {% for error in user_form.email.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group{% if user_form.password.errors %} has-error{% endif %}">
+                {{ user_form.password.label_tag }}
+                {{ user_form.password }}
+                {% if user_form.password.errors %}
+                    <div class="help-block">
+                        {% for error in user_form.password.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group{% if user_form.password_2.errors %} has-error{% endif %}">
+                {{ user_form.password_2.label_tag }}
+                {{ user_form.password_2 }}
+                {% if user_form.password_2.errors %}
+                    <div class="help-block">
+                        {% for error in user_form.password_2.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <button style="width: 100%" class="btn btn-primary btn-shadow" type="submit">Регистрация</button>
         </form>
     </div>
 {% endblock content %}

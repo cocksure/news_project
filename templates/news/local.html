@@ -1,7 +1,8 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Местные новости{% endblock title %}
+{% block title %}{% blocktrans %}Местные новости{% endblocktrans %}{% endblock title %}
 
 
 {% block content %}
@@ -10,13 +11,13 @@
         <a href="{% url 'news_detail_page' local.slug %}">
             <div class="container">
                 <div class="border_list_style">
-                    <div class="row">
-                        <div class="col-md-4 center-block">
-                            <img class="img-thumbnail" src="{{ local.image.url }}" style="width: 80%">
+                    <div class="row" >
+                        <div class="col-md-2 center-block">
+                            <img class="img-thumbnail" src="{{ local.image.url }}" style="width: 100%" alt="deteail-image">
                         </div>
-                        <div class="col-md-8">
-                            <h3>{{ local.title }}</h3>
-                            <p>{{ local.body | truncatewords:35 }}</p>
+                        <div class="col-md-10">
+                                <h3>{{ local.title| truncatewords:8 }}</h3><hr>
+                                <p>{{ local.body | truncatewords:10 }}</p>
                         </div>
                     </div>
                 </div>

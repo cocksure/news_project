@@ -1,14 +1,18 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %} {{ news.title }} {% endblock title %}
 
 {% block content %}
+
     <div class="container">
-    <h2 class="text-center">Удалить новость</h2><br>
+        <h2 class="text-danger">{% blocktrans %}Вы уверены?{% endblocktrans %}</h2><hr>
+        <h3 class="">{% blocktrans %}Обекты{% endblocktrans %}</h3><br>
+        <h5>Новость: {{ news.title | truncatewords:10 }} ... </h5><br>
         <form method="post">{% csrf_token %}
-            <h5>{{ news.title | truncatewords:3 }} ... действительно хотите удалить?</h5><br>
-            <button type="submit" class="btn-danger mb-3">Да, уверен</button><br>
+            <button type="submit" class="btn btn-danger btn-shadow">{% blocktrans %}Да, уверен{% endblocktrans %}</button>
+            <button href="{% url 'news_detail_page' news.slug %}" class="btn btn-primary btn-shadow">{% blocktrans %}Нет, отменить{% endblocktrans %}</button><hr>
         </form>
     </div>
 

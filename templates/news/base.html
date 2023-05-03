@@ -1,6 +1,8 @@
 {% load static %}
+{% load i18n %}
+
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 
 <head>
     <title>{% block title %} {% endblock title %}</title>
@@ -19,85 +21,134 @@
 </head>
 
 <body>
-    <div id="preloader">
+    <div id="preloader" >
       <div id="status">&nbsp;</div>
     </div>
     <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
     <div class="container">
       <header id="header">
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="header_top">
-              <div class="header_top_left">
-                <ul class="top_nav">
-                  <li><a href="{% url 'home_page' %}">Главная страница</a></li>
-                  <li><a href="#">О нас</a></li>
-                  <li><a href="{% url 'contact_page' %}">Связь</a></li>
-                  {% if user.is_authenticated and user.is_superuser %}
-                        <li><a href="{% url 'admin_page' %}">Админы</a> </li>
-                  {% endif %}
+      <div class=" row" style="margin-bottom: 10px;">
 
-                </ul>
+            <div class="header_top" style="background-color: #f5f5f5">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" style="padding-left: 0px">
+                    <form method="get" action="{% url 'search_results' %}">
+                                <input  type="search" name="q" placeholder="{% blocktrans %}Поиск{% endblocktrans %}" class="form-control" >
+                            </form>
+                </div>
+                <div class="col-lg-3 col-md-3"></div>
+                <div class="col-lg-3 col-md-3"></div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" style="padding-right: 0px">
+                    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+                                <input class="form-control" name="next" type="hidden" value="{{ redirect_to }}">
+                                <select class="form-control" name="language">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% get_available_languages as LANGUAGES %}
+                                    {% get_language_info_list for LANGUAGES as languages %}
+                                    {% for language in languages %}
+                                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                            {{ language.name_local }} ({{ language.code }})
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
+                                <input class="form-control" type="submit" value="Go" >
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="header_top">
+      <div class="header_top_left">
+        <ul class="top_nav">
+          <li><a href="{% url 'home_page' %}">{% blocktrans %}Главная страница{% endblocktrans %}</a></li>
+          <li><a id="about" href="#">О нас</a></li>
+          <li><a href="{% url 'contact_page' %}">{% blocktrans %}Связь{% endblocktrans %}</a></li>
+          {% if user.is_authenticated and user.is_superuser %}
+            <li><a href="{% url 'admin_page' %}">{% blocktrans %}Админы{% endblocktrans %}</a></li>
+          {% endif %}
+          <li id="mobile_profil">
+            {% if request.user.is_authenticated %}
+                <div class="dropdown" >
+                    <a class="dropdown-toggle" href="#" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" text-decoration: none;">
+                        {% blocktrans %}Профиль{% endblocktrans %}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="right: 0; left: auto;">
+                        <li><a href="{% url 'user_profile'%}">{% blocktrans %}Мой профиль{% endblocktrans %}</a></li>
+                        <li><a href="{% url 'logout'%}">{% blocktrans %}Выйти{% endblocktrans %}</a></li>
+                    </ul>
+                </div>
+            {% else %}
+                <p><a href="{% url 'login'%}" style="color: white; font-size: 12px ">{% blocktrans %}Войти в сайт{% endblocktrans %}</a></p>
+            {% endif %}
+        </li>
+        </ul>
+
               </div>
               <div class="header_top_right">
-                  {% if request.user.is_authenticated %}
-                  <p>
-                      <a href="{% url 'user_profile'%}" style="color: greenyellow">Мой профил | </a>
-                      <a href="{% url 'logout'%}" style="color: brown">Выйти</a>
+              {% if request.user.is_authenticated %}
+                  <p class="my_profile">
+                      <a href="{% url 'user_profile'%}" >{% blocktrans %}Мой профил{% endblocktrans %} </a>
+                      <a href="{% url 'logout'%}">{% blocktrans %}Выйти{% endblocktrans %}</a>
                   </p>
-
-                  {% else %}
-                  <p><a href="{% url 'login'%}" style="color: greenyellow">Войти в сайт</a></p>
-                  {% endif %}
-              <p>{% now "jS F Y H:i" %}</p>
+              {% else %}
+                  <p><a href="{% url 'login'%}" style="color: greenyellow; font-size: 14px ">{% blocktrans %}Войти в сайт{% endblocktrans %}</a></p>
+              {% endif %}
+              <p style="color: black; font-size: 14px">{% now "jS F Y H:i" %}</p>
               </div>
             </div>
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="header_bottom">
               <div class="logo_area"><a href="{% url 'home_page' %}" class="logo"><img src="{% static 'images/logo.jpg' %}" alt=""></a></div>
-              <div class="add_banner"><a href="#"><img src="{% static 'images/addbanner_728x90_V1.jpg' %}" alt=""></a></div>
+              <div class="add_banner"><a href="#"><img src="{% static 'images/addbanner_728x90_V1.jpg' %}" alt="addbaner"></a></div>
             </div>
           </div>
         </div>
       </header>
       <section id="navArea">
         <nav class="navbar navbar-inverse" role="navigation">
-          <div class="navbar-header">
+          <div class="navbar-header" style="border-radius: 5px">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
           </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav main_nav">
-              <li class="active"><a href="{% url 'home_page' %}"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-              <li><a href="{% url 'internet_news_page' %}">Интернет</a></li>
-              <li><a href="{% url 'local_news_page' %}">Общество</a></li>
-              <li><a href="{% url 'sport_news_page' %}">Спорт</a></li>
-              <li><a href="{% url 'economic_news_page' %}">Экономика</a></li>
-              <li><a href="{% url 'contact_page' %}">Связь с нами</a></li>
-            <li style="margin-top: 7px; ">
-                <form method="get" action="{% url 'search_results' %}">
-                  <input type="search" name="q" placeholder="Поиск" class="form-control">
-                </form>
-            </li>
-            </ul>
+          <div class="row" style="background-color: #6285cc; margin: 0; border-radius: 5px">
+             <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav main_nav">
+                        <li class="active" ><a href="{% url 'home_page' %}"><span class="fa fa-home desktop-home"></span>
+                            <span class="mobile-show">Главная страница</span></a></li>
+                        <li><a href="{% url 'internet_news_page' %}">{% blocktrans %}Интернет{% endblocktrans %}</a></li>
+                        <li><a href="{% url 'politic_news_page' %}">{% blocktrans %}Политика{% endblocktrans %}</a></li>
+                        <li><a href="{% url 'local_news_page' %}">{% blocktrans %}Общество{% endblocktrans %}</a></li>
+                        <li><a href="{% url 'sport_news_page' %}">{% blocktrans %}Спорт{% endblocktrans %}</a></li>
+                        <li><a href="{% url 'economic_news_page' %}">{% blocktrans %}Экономика{% endblocktrans %}</a></li>
+                        <li><a href="{% url 'contact_page' %}">{% blocktrans %}Связь с нами{% endblocktrans %}</a></li>
+                    </ul>
+                </div>
           </div>
         </nav>
       </section>
       <section id="newsSection">
         <div class="row">
           <div class="col-lg-12 col-md-12">
-            <div class="latest_newsarea"> <span>Latest News</span>
-              <ul id="ticker01" class="news_sticker">
+            <div class="latest_newsarea"> <span>{% blocktrans %}Последные новости{% endblocktrans %}</span>
+              <ul id="ticker01" class="news_sticker list-group">
                   {% for news in latest_news %}
-                    <li><a href="{% url 'news_detail_page' news.slug %}"><img src="{{ news.image.url }}" alt="">{{ news.title }}</a></li>
+                    <li class="list-item"><a style="color: black" href="{% url 'news_detail_page' news.slug %}"><img class="img-rounded" src="{{ news.image.url }}" alt="">{{ news.title }}</a></li>
                   {% endfor %}
               </ul>
               <div class="social_area">
-                <ul class="social_nav">
-                  <li class="facebook"><a href="#"></a></li>
-                  <li class="twitter"><a href="#"></a></li>
-                  <li class="flickr"><a href="#"></a></li>
-                  <li class="pinterest"><a href="#"></a></li>
+                <ul class="social_nav list-group">
+                  <li class="facebook"><a href="https://www.facebook.com/sanjar.utkirovich?mibextid=ZbWKwL" target="_blank"></a></li>
+                  <li class="twitter"><a href="https://www.instagram.com/__maxmudov/?fbclid=IwAR1j34PBpgmZa_ILZe4x4HN6QAI4V1A8puBlIlBeM-Vn23fjLdzUaa776_Q" target="_blank"></a></li>
+                  <li class="flickr"><a href="https://t.me/cocksure" target="_blank"></a></li>
+                  <li class="pinterest"><a href="https://www.pinterest.com/" target="_blank"></a></li>
                   <li class="googleplus"><a href="#"></a></li>
                   <li class="vimeo"><a href="#"></a></li>
                   <li class="youtube"><a href="#"></a></li>
@@ -110,9 +161,6 @@
       </section>
     </div>
 
-
-
-
     {% block content %}
 
     {% endblock content %}
@@ -120,37 +168,37 @@
 
 <div class="container">
     <footer id="footer">
-<div class="footer_top">
-  <div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-4">
-      <div class="footer_widget wow fadeInLeftBig">
-        <h2>Flickr Images</h2>
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-4">
-      <div class="footer_widget wow fadeInDown">
-        <h2>Теги</h2>
-        <ul class="tag_nav">
-            {% for category in categories %}
-          <li><a href="#">{{ category.name }}</a></li>
-            {% endfor %}
-        </ul>
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-4">
-      <div class="footer_widget wow fadeInRightBig">
-        <h2>Связь с нами</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        <address>
-        Perfect News,1238 S . 123 St.Suite 25 Town City 3333,USA Phone: 123-326-789 Fax: 123-546-567
-        </address>
-      </div>
-    </div>
-  </div>
-</div>
+        <div class="footer_top">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+              <div class="footer_widget wow fadeInLeftBig">
+                <h2>Flickr Images</h2>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+              <div class="footer_widget wow fadeInDown">
+                <h2>Теги</h2>
+                <ul class="tag_nav">
+                    {% for category in categories %}
+                  <li><a href="#">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+              <div class="footer_widget wow fadeInRightBig">
+                <h2>Связь с нами</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <address>
+                Perfect News,1238 S . 123 St.Suite 25 Town City 3333,USA Phone: 123-326-789 Fax: 123-546-567
+                </address>
+              </div>
+            </div>
+          </div>
+        </div>
 <div class="footer_bottom">
-  <p class="copyright">Copyright &copy; 2045 <a href="{% url 'home_page' %}">NewsFeed</a></p>
-  <p class="developer">Developed By Wpfreeware</p>
+  <p class="copyright">Copyright &copy; 2023 <a href="{% url 'home_page' %}">NewsWatch</a></p>
+  <p class="developer">Developed By Mr.Sanjar</p>
 </div>
 </footer>
 </div>
@@ -168,7 +216,9 @@
     <script src="{% static 'js/html5shiv.min.js' %}"></script>
     <script src="{% static 'js/respond.min.js' %}"></script>
 {% endblock javascript %}
+
 </body>
+
 </html>
 
 

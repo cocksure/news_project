@@ -1,0 +1,7 @@
+Pillow~=9.4.0
+Django~=4.2
+asgiref~=3.6.0
+sqlparse~=0.4.4
+pylatexenc~=2.10
+python-gettext~=5.0
+django-modeltranslation~=0.18.9

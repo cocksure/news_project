@@ -1,7 +1,8 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Новости экономикии{% endblock title %}
+{% block title %}{% blocktrans %}Новости экономикии{% endblocktrans %}{% endblock title %}
 
 
 {% block content %}
@@ -10,12 +11,12 @@
             <div class="container">
                 <div class="border_list_style">
                     <div class="row">
-                        <div class="col-md-4 center-block">
-                            <img class="img-thumbnail" src="{{ econom.image.url }}" style="width: 80%">
+                        <div class="col-md-2 center-block">
+                            <img class="img-thumbnail" src="{{ econom.image.url }}" style="width: 100%" alt="deteail-image">
                         </div>
-                        <div class="col-md-8">
-                                <h3>{{ econom.title }}</h3>
-                                <p>{{ econom.body | truncatewords:35 }}</p>
+                        <div class="col-md-10">
+                                <h3>{{ econom.title| truncatewords:8 }}</h3><hr>
+                                <p>{{ econom.body | truncatewords:10 }}</p>
                         </div>
                     </div>
                 </div>

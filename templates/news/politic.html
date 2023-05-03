@@ -1,23 +1,21 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Политические новости{% endblock title %}
-
+{% block title %}{% blocktrans %}Политические новости{% endblocktrans %}{% endblock title %}
 
 {% block content %}
     {% for politic in politic_news %}
         <a href="{% url 'news_detail_page' politic.slug %}">
             <div class="container">
                 <div class="border_list_style">
-                    <div class="col-md-4 center-block">
-                        <div class="row">
-                            <img class="img-rounded" src="{{ econom.image.url }}" style="width: 80%">
+                    <div class="row">
+                        <div class="col-md-2 center-block">
+                            <img class="img-thumbnail" src="{{ politic.image.url }}" style="width: 100%" alt="deteail-image">
                         </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="row">
-                            <h3>{{ politic.title }}</h3>
-                            <p>{{ politic.body | truncatewords:35 }}</p>
+                        <div class="col-md-10">
+                            <h3>{{ politic.title |truncatewords:8 }}</h3><hr>
+                            <p id="news_body">{{ politic.body | truncatewords:10 }}</p>
                         </div>
                     </div>
                 </div>

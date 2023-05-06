@@ -1,0 +1,14 @@
+.scrollToTop{background-color:#6285cc; color:#fff}
+.scrollToTop:hover, .scrollToTop:focus{background-color:#fcd690; color:#6285cc; border: 1px solid #6285cc}
+.latest_newsarea span{background:none repeat scroll 0 0 }
+.latest_post > h2 span{background:none repeat scroll 0 0}
+#prev-button{color:#fcd690}
+#next-button{color:#fcd690}
+.single_post_content > h2 span{background:none repeat scroll 0 0}
+.single_sidebar > h2 span{ background:none repeat scroll 0 0}
+.footer_widget > h2:hover{color:white}
+.copyright a:hover{color:white}
+.breadcrumb{border-left:10px solid}
+.error_page > span{background:none repeat scroll 0 0}
+.contact_form input[type="submit"]:hover{background-color:#6285cc; color:white}
+.form-control:focus{border-color:#6285cc;  box-shadow: 1px 1px #6285cc inset,0 0 5px #6285cc}

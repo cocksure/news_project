@@ -19,216 +19,259 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 #: .\accounts\models.py:13
 #, python-brace-format
-msgid "Профиль: {self.user.username}"
-msgstr ""
-
-#: .\news_app\models.py:76
-#, python-brace-format
-msgid "Comment - {self.body} by {self.user}"
-msgstr ""
-
-#: .\news_project\settings.py:107
-msgid "Russian"
-msgstr ""
-
-#: .\news_project\settings.py:108
-msgid "Uzbek"
-msgstr ""
-
-#: .\news_project\settings.py:109
-msgid "English"
-msgstr ""
+msgid "Профиль"
+msgstr "Profil"
 
 #: .\templates\account\profile_edit.html:5
 #: .\templates\account\profile_edit.html:10
 msgid "Изменения информации"
 msgstr "Ma'lumotlarni tahrirlash"
 
-#: .\templates\account\profile_edit.html:13
-msgid "Вы можете изменит ваше данные"
-msgstr "Siz ma'lumotlarni yangilashingiz mumkin"
-
-#: .\templates\account\profile_edit.html:19 .\templates\crud\news_edit.html:12
+#: .\templates\account\profile_edit.html:16 .\templates\crud\news_edit.html:75
 msgid "Изменить"
-msgstr "Yangilash"
+msgstr "O'zgartirish"
 
-#: .\templates\account\register.html:5
+#: .\templates\account\register.html:5 .\templates\account\register.html:9
+#: .\templates\account\register.html:73 .\templates\registration\login.html:25
 msgid "Регистрация"
-msgstr "Ro'yhatdan o'tish"
-
-#: .\templates\account\register.html:13
-msgid "Для регистрация заполните форму"
-msgstr "Ro'yhatdan o'tish uchun ushbu formani to'ldiring"
+msgstr "Ro'yxatdan o'tish"
 
 #: .\templates\account\register_done.html:5
 msgid " Регистрация успешно выполнено"
-msgstr "Roʻyxatdan oʻtish muvaffaqiyatli yakunlandi"
+msgstr "Ro'yxatdan o'tish muvaffaqiyatli yakunlandi"
 
 #: .\templates\account\register_done.html:10
 msgid "вы успешно проходили регистрацию"
-msgstr "siz muvaffaqiyatli ro'yxatdan o'tdingiz"
+msgstr "Siz ro'yxatdan o'tdingiz"
 
 #: .\templates\account\register_done.html:13
 msgid "тепер можете"
-msgstr "Endi"
+msgstr "Hozir siz"
 
 #: .\templates\account\register_done.html:13
+#: .\templates\registration\password_reset_complete.html:14
 msgid "войти"
-msgstr "kirishingiz mumkin"
+msgstr "kirish"
 
 #: .\templates\account\register_done.html:13
 msgid "в сайт"
 msgstr "saytga"
 
-#: .\templates\crud\news_create.html:5 .\templates\pages\admin_page.html:30
+#: .\templates\crud\news_create.html:5 .\templates\crud\news_create.html:9
+#: .\templates\pages\admin_page.html:30
 msgid "Добавить новость"
 msgstr "Yangilik qo'shish"
 
-#: .\templates\crud\news_create.html:9
-msgid "Создать новость"
-msgstr "Yangilik yaratish"
+#: .\templates\crud\news_create.html:14 .\templates\crud\news_create.html:18
+#: .\templates\crud\news_create.html:24 .\templates\crud\news_create.html:28
+#: .\templates\crud\news_edit.html:15 .\templates\crud\news_edit.html:19
+#: .\templates\crud\news_edit.html:25 .\templates\crud\news_edit.html:29
+msgid "Заголовок"
+msgstr "Sarlavha"
 
-#: .\templates\crud\news_create.html:12
-msgid "Добавить"
-msgstr "Qo'shish"
-
-#: .\templates\crud\news_delete.html:10 .\templates\news\news_detail.html:51
-msgid "Удалить новость"
-msgstr "Yangilikni o'chirish"
-
-#: .\templates\crud\news_delete.html:12
-msgid "действительно хотите удалить"
-msgstr "Siz haqiqatan ham o'chirmoqchimisiz"
-
-#: .\templates\crud\news_delete.html:13
-msgid "Да, уверен"
-msgstr "Xa, albatta"
-
-#: .\templates\crud\news_edit.html:9
-msgid "Измененить новость"
-msgstr "Yangilikni tahrirlash"
-
-#: .\templates\news\base.html:35 .\templates\news\home.html:5
-msgid "Главная страница"
-msgstr "Asisiy sahifa"
-
-#: .\templates\news\base.html:37
-msgid "Связь"
-msgstr "Aloqa"
-
-#: .\templates\news\base.html:39 .\templates\pages\admin_page.html:10
-msgid "Админы"
-msgstr "Administratorlar"
-
-#: .\templates\news\base.html:46
-msgid "Мой профил"
-msgstr "Mening profilim"
-
-#: .\templates\news\base.html:47 .\templates\registration\logged_out.html:5
-msgid "Выйти"
-msgstr "Chiqish"
-
-#: .\templates\news\base.html:51 .\templates\registration\logged_out.html:11
-msgid "Войти в сайт"
-msgstr "Saytga kirish"
-
-#: .\templates\news\base.html:75
-msgid "Интернет"
-msgstr "Internet"
-
-#: .\templates\news\base.html:76 .\templates\news\home.html:190
-msgid "Общество"
-msgstr "Mahalliy"
-
-#: .\templates\news\base.html:77 .\templates\news\home.html:90
-msgid "Спорт"
-msgstr "Sport"
-
-#: .\templates\news\base.html:78 .\templates\news\home.html:122
-msgid "Экономика"
-msgstr "Iqtisod"
-
-#: .\templates\news\base.html:79 .\templates\news\contact.html:15
-msgid "Связь с нами"
-msgstr "Biz bilan aloqa"
-
-#: .\templates\news\base.html:111
-msgid "Последные новости"
-msgstr "So'ngi yangiliklar"
-
-#: .\templates\news\contact.html:4
-msgid " Связь с нами"
-msgstr "Biz bilan aloqa"
-
-#: .\templates\news\contact.html:19
-msgid "Специальность по опыт работы"
-msgstr "Tajriba bo'yicha ish staji"
-
-#: .\templates\news\contact.html:21
+#: .\templates\crud\news_create.html:40 .\templates\crud\news_create.html:44
+#: .\templates\crud\news_create.html:50 .\templates\crud\news_create.html:54
+#: .\templates\crud\news_edit.html:41 .\templates\crud\news_edit.html:45
+#: .\templates\crud\news_edit.html:51 .\templates\crud\news_edit.html:55
+#: .\templates\news\contact.html:33
 msgid "Текст"
 msgstr "Matn"
 
-#: .\templates\news\contact.html:22 .\templates\news\news_detail.html:31
-msgid "Отправить"
-msgstr "Yuborish"
+#: .\templates\crud\news_create.html:60 .\templates\crud\news_edit.html:61
+msgid "Фото"
+msgstr "Rasm"
 
-#: .\templates\news\contact.html:30 .\templates\news\home.html:224
+#: .\templates\crud\news_create.html:66
+msgid "Категория"
+msgstr "Kategoriya"
+
+#: .\templates\crud\news_create.html:70
+msgid "Статус"
+msgstr "Holat"
+
+#: .\templates\crud\news_create.html:74
+msgid "Создать"
+msgstr "Yaratish"
+
+#: .\templates\crud\news_delete.html:10
+msgid "Вы уверены?"
+msgstr "Ishonchingiz komilmi?"
+
+#: .\templates\crud\news_delete.html:11
+msgid "Обекты"
+msgstr "Ob'yektlar"
+
+
+#: .\templates\crud\news_delete.html:14
+msgid "Да, уверен"
+msgstr "Ha, ishonchli"
+
+#: .\templates\crud\news_delete.html:15
+msgid "Нет, отменить"
+msgstr "Yo'q, bekor qilish"
+
+#: .\templates\crud\news_edit.html:10
+msgid "Изменить новость"
+msgstr "Yangilikni tahrirlash"
+
+#: .\templates\crud\news_edit.html:35
+msgid "Slug"
+msgstr "Slug"
+
+#: .\templates\crud\news_edit.html:67
+msgid "Категория:"
+msgstr "Turkum:"
+
+#: .\templates\crud\news_edit.html:71
+msgid "Статус:"
+msgstr "Holat:"
+
+#: .\templates\news\base.html:35
+msgid "Поиск"
+msgstr "Qidiruv"
+
+#: .\templates\news\base.html:70 .\templates\news\home.html:6
+msgid "Главная страница"
+msgstr "Bosh sahifa"
+
+#: .\templates\news\base.html:72
+msgid "Связь"
+msgstr "Bog'lanish"
+
+#: .\templates\news\base.html:74 .\templates\pages\admin_page.html:10
+msgid "Админы"
+msgstr "Administratorlar"
+
+#: .\templates\news\base.html:80
+msgid "Профиль"
+msgstr "Profil"
+
+#: .\templates\news\base.html:84
+msgid "Мой профиль"
+msgstr "Mening profilim"
+
+#: .\templates\news\base.html:85 .\templates\news\base.html:99
+#: .\templates\registration\logged_out.html:5
+msgid "Выйти"
+msgstr "Chiqish"
+
+#: .\templates\news\base.html:89 .\templates\news\base.html:102
+#: .\templates\registration\logged_out.html:12
+msgid "Войти в сайт"
+msgstr "Saytga kirish"
+
+#: .\templates\news\base.html:98
+msgid "Мой профил"
+msgstr "Mening profilim"
+
+#: .\templates\news\base.html:126 .\templates\news\home.html:262
+msgid "Интернет"
+msgstr "Internet"
+
+#: .\templates\news\base.html:127 .\templates\news\home.html:60
+#: .\templates\news\home.html:263
+msgid "Политика"
+msgstr "Siyosat"
+
+#: .\templates\news\base.html:128 .\templates\news\home.html:195
+#: .\templates\news\home.html:264
+msgid "Общество"
+msgstr "Jamiyat"
+
+#: .\templates\news\base.html:129 .\templates\news\home.html:96
+#: .\templates\news\home.html:265
+msgid "Спорт"
+msgstr "Sport"
+
+#: .\templates\news\base.html:130 .\templates\news\home.html:127
+#: .\templates\news\home.html:266
+msgid "Экономика"
+msgstr "Iqtisodiyot"
+
+#: .\templates\news\base.html:131 .\templates\news\contact.html:27
+#: .\templates\news\home.html:267
+msgid "Связь с нами"
+msgstr "Biz bilan bog'lanish"
+
+#: .\templates\news\base.html:140
+msgid "Последные новости"
+msgstr "So'nggi yangiliklar"
+
+#: .\templates\news\contact.html:4
+msgid " Связь с нами"
+msgstr "Biz bilan bog'lanish"
+
+#: .\templates\news\contact.html:30 .\templates\pages\admin_page.html:15
+#: .\templates\pages\user_profile.html:13
+msgid "Имя"
+msgstr "Ism"
+
+#: .\templates\news\contact.html:31
+msgid "Специальность по опыт работы"
+msgstr "Ish tajribasi bo'yicha mutaxassislik"
+
+#: .\templates\news\contact.html:32
+msgid "Email"
+msgstr "Elektron manzil"
+
+#: .\templates\news\contact.html:34 .\templates\news\news_detail.html:33
+#: .\templates\registration\password_reset_form.html:13
+msgid "Отправить"
+msgstr "Jo'natish"
+
+#: .\templates\news\contact.html:42 .\templates\news\home.html:229
 msgid "Популярные новости"
-msgstr "Mashxur yangiliklar"
+msgstr "Ommabop yangiliklar"
 
 #: .\templates\news\economic.html:5
 msgid "Новости экономикии"
 msgstr "Iqtisodiy yangiliklar"
 
-#: .\templates\news\home.html:26
+#: .\templates\news\home.html:28
 msgid "Последние новости"
-msgstr "So'ngi yangiliklar"
+msgstr "So'nggi yangiliklar"
 
-#: .\templates\news\home.html:56
-msgid "Политика"
-msgstr "Siyosat"
-
-#: .\templates\news\home.html:155
+#: .\templates\news\home.html:160
 msgid "Фотографии"
-msgstr "Fotolar"
+msgstr "Rasmlar"
 
-#: .\templates\news\home.html:297
+#: .\templates\news\home.html:308
 msgid "Все категории"
-msgstr "Barcha toifalar"
+msgstr "Barcha kategoriyalar"
 
-#: .\templates\news\home.html:299
-msgid "Выберите категорию"
-msgstr "Toifani tanlash"
-
-#: .\templates\news\home.html:306
+#: .\templates\news\home.html:319
 msgid "Ссылки"
-msgstr "Linklar"
+msgstr "Havolalar"
 
 #: .\templates\news\internet.html:5
 msgid "Новости интернета"
-msgstr "Internet yangiliklar"
+msgstr "Internet yangiliklari"
 
 #: .\templates\news\local.html:5
 msgid "Местные новости"
 msgstr "Mahalliy yangiliklar"
 
-#: .\templates\news\news_detail.html:27 .\templates\news\news_detail.html:37
-msgid "Оставить коментарии"
+#: .\templates\news\news_detail.html:26 .\templates\news\news_detail.html:39
+msgid "Оставить комментарий"
 msgstr "Izoh qoldirish"
 
-#: .\templates\news\news_detail.html:41
+#: .\templates\news\news_detail.html:44
 msgid "Только зарегистрированные пользователи могут оставлять комментарии"
-msgstr "Faqat ro'yxatdan o'tgan foydalanuvchilar izoh qoldirishlari mumkin"
+msgstr "Faqat ro'yxatdan o'tgan foydalanuvchilar izoh qoldirishi mumkin"
 
-#: .\templates\news\news_detail.html:48
-msgid "Изменить новость"
-msgstr "Yangiliklarni tahrirlash"
+#: .\templates\news\news_detail.html:61
+msgid "Изменит новость"
+msgstr "Yangilikni tahrirlash"
 
-#: .\templates\news\news_detail.html:67
+#: .\templates\news\news_detail.html:64
+msgid "Удалить новость"
+msgstr "Yangilikni o'chirish"
+
+#: .\templates\news\news_detail.html:90
 msgid "Коментарии"
 msgstr "Izohlar"
 
-#: .\templates\news\news_detail.html:68
+#: .\templates\news\news_detail.html:91
 msgid "Количество коментариев"
 msgstr "Izohlar soni"
 
@@ -250,21 +293,17 @@ msgstr "Sport yangiliklari"
 
 #: .\templates\pages\admin_page.html:5
 msgid "Профиль администратора"
-msgstr "Administrator profili"
+msgstr "Administrator profil"
 
 #: .\templates\pages\admin_page.html:9
 msgid "Страница админов"
 msgstr "Administratorlar sahifasi"
 
-#: .\templates\pages\admin_page.html:14
+#: .\templates\pages\admin_page.html:14 .\templates\registration\login.html:12
 msgid "Имя пользователя"
 msgstr "Foydalanuvchi nomi"
 
-#: .\templates\pages\admin_page.html:15 .\templates\pages\user_profile.html:19
-msgid "Имя"
-msgstr "Ism"
-
-#: .\templates\pages\admin_page.html:16 .\templates\pages\user_profile.html:20
+#: .\templates\pages\admin_page.html:16 .\templates\pages\user_profile.html:14
 msgid "Фамилия"
 msgstr "Familiya"
 
@@ -272,35 +311,36 @@ msgstr "Familiya"
 msgid "Профиль ползователя"
 msgstr "Foydalanuvchi profili"
 
-#: .\templates\pages\user_profile.html:17
+#: .\templates\pages\user_profile.html:11
 msgid "Имя пользователья"
 msgstr "Foydalanuvchi nomi"
 
-#: .\templates\pages\user_profile.html:18
+#: .\templates\pages\user_profile.html:12
 msgid "Почта"
-msgstr "Email"
+msgstr "Elektron pochta"
 
-#: .\templates\pages\user_profile.html:24
-msgid "Изменит пароль"
-msgstr "Parolni yangilash"
-
-#: .\templates\pages\user_profile.html:27
+#: .\templates\pages\user_profile.html:15
 msgid "Изменит данные профиля"
-msgstr "Profil ma'lumotlarini o'zgartirish."
+msgstr "Profil ma'lumotlarini o'zgartirish"
 
-#: .\templates\pages\user_profile.html:31
+#: .\templates\pages\user_profile.html:16
+#: .\templates\registration\password_change_form.html:15
+msgid "Изменит пароль"
+msgstr "Parolni o'zgartirish"
+
+#: .\templates\pages\user_profile.html:30
 msgid "Выход с сайта"
-msgstr "saytdan chiqish"
+msgstr "Saytdan chiqish"
 
-#: .\templates\registration\logged_out.html:11
-msgid "Вы вышли из сайта"
-msgstr "Siz saytdan tashqaridasiz"
 
-#: .\templates\registration\login.html:5
 msgid "Войти"
 msgstr "Kirish"
 
-#: .\templates\registration\login.html:23
+#: .\templates\registration\login.html:16
+msgid "Пароль"
+msgstr "Parol"
+
+#: .\templates\registration\login.html:30
 msgid "Забыли пароль"
 msgstr "Parolni unutdingizmi"
 
@@ -310,15 +350,19 @@ msgstr "Parol o'zgartirildi"
 
 #: .\templates\registration\password_change_done.html:11
 msgid "Пароль успешно изменен"
-msgstr "Parol muvaffaqiyatli almashtirildi"
+msgstr "Parol muvaffaqiyatli o'zgartirildi"
 
 #: .\templates\registration\password_change_done.html:13
 msgid "ваш парол успешно изменен"
-msgstr "parolingiz muvaffaqiyatli o'zgartirildi"
+msgstr "Sizning parolingiz muvaffaqiyatli o'zgartirildi"
 
 #: .\templates\registration\password_change_form.html:5
 msgid "Изменения пароля"
-msgstr "parolni o'zgartirish"
+msgstr "Parol o'zgartirish"
+
+#: .\templates\registration\password_change_form.html:11
+msgid "Ияменения пароля"
+msgstr "Parolni o'zgartirish"
 
 #: .\templates\registration\password_reset_complete.html:5
 msgid "Пароль успешно сброшен"
@@ -326,11 +370,11 @@ msgstr "Parol muvaffaqiyatli tiklandi"
 
 #: .\templates\registration\password_reset_complete.html:11
 msgid "Ваш пароль был успешно изменен"
-msgstr "Parolingiz muvaffaqiyatli o'zgartirildi"
+msgstr "Sizning parolingiz muvaffaqiyatli o'zgartirildi"
 
 #: .\templates\registration\password_reset_complete.html:13
 msgid "Тепер можете снова"
-msgstr "Endi yana qila olasiz"
+msgstr "Endi qaytadan tayyor"
 
 #: .\templates\registration\password_reset_confirm.html:5
 msgid "Восстановить пароль"
@@ -345,13 +389,17 @@ msgstr "Parolni tiklash"
 msgid "Введите новый пароь"
 msgstr "Yangi parolni kiriting"
 
+#: .\templates\registration\password_reset_confirm.html:18
+msgid "Изменить пароль"
+msgstr "Parolni o'zgartirish"
+
 #: .\templates\registration\password_reset_confirm.html:23
 msgid "Вы использовали неправильный линк или время истекло"
-msgstr "Siz noto‘g‘ri havoladan foydalandingiz yoki vaqt tugadi"
+msgstr "Siz noto'g'ri havoladan foydalangansiz yoki vaqt tugagan"
 
 #: .\templates\registration\password_reset_done.html:12
-msgid "Код был  отправлен на ваш email, Для восстановления паролья"
-msgstr "Parolingizni tiklash uchun elektron pochtangizga kod yuborildi"
+msgid "Код был отправлен на ваш email, Для восстановления паролья"
+msgstr "Kod sizning elektron pochtangizga yuborildi, parolni tiklash uchun"
 
 #: .\templates\registration\password_reset_done.html:13
 msgid "Отправит ещё раз"
@@ -360,7 +408,3 @@ msgstr "Yana yuborish"
 #: .\templates\registration\password_reset_form.html:5
 msgid "Восстановления пароль"
 msgstr "Parolni tiklash"
-
-#: .\templates\registration\password_reset_form.html:10
-msgid "Чтобы восстановить пароль введите ваш email"
-msgstr "Parolni tiklash uchun elektron pochta manzilingizni kiriting"

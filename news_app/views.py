@@ -10,6 +10,7 @@ from news_project.custom_permissions import OnlyLoggedSuperUser
 from .models import News, Category
 from .forms import ContactForm, CommentForm, NewsForm, NewsUpdateForm
 from hitcount.views import HitCountMixin
+from django.contrib import messages
 
 
 def news_list(request):
@@ -62,19 +63,6 @@ def news_detail(request, news):
     return render(request, "news/news_detail.html", context)
 
 
-def home_page_view(request):
-    categories = Category.objects.all()
-    newslist = News.published.get_queryset().order_by('-publish_time')[:10]
-    politic_news = News.published.all().filter(category__name="Политика").order_by('-publish_time')[1:5]
-    context = {
-        'news_list': newslist,
-        'categories': categories,
-        'politic_news': politic_news
-    }
-
-    return render(request, 'news/home.html', context)
-
-
 class HomePageView(ListView):
     model = News
     template_name = 'news/home.html'
@@ -84,11 +72,11 @@ class HomePageView(ListView):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         context['news_list'] = News.published.get_queryset().order_by('-publish_time')[:10]
-        context['politic_news'] = News.published.all().filter(category__name="Политика").order_by('-publish_time')[:5]
-        context['local_news'] = News.published.all().filter(category__name="Общество").order_by('-publish_time')[:5]
-        context['sport_news'] = News.published.all().filter(category__name="Спорт").order_by('-publish_time')[:5]
-        context['economic_news'] = News.published.all().filter(category__name="Экономика").order_by('-publish_time')[:5]
-        context['internet_news'] = News.published.all().filter(category__name="Интернет").order_by('-publish_time')[:5]
+        context['politic_news'] = News.published.all().filter(category__id=1).order_by('-publish_time')[:5]
+        context['local_news'] = News.published.all().filter(category__id=3).order_by('-publish_time')[:5]
+        context['sport_news'] = News.published.all().filter(category__id=2).order_by('-publish_time')[:5]
+        context['economic_news'] = News.published.all().filter(category__id=4).order_by('-publish_time')[:5]
+        context['internet_news'] = News.published.all().filter(category__id=5).order_by('-publish_time')[:5]
 
         return context
 
@@ -107,7 +95,8 @@ class ContactPageView(TemplateView):
         form = ContactForm(request.POST)
         if request.method == 'POST' and form.is_valid():
             form.save()
-            return HttpResponse('<h2> Благодарим Вас за обращение к нам!')
+            messages.success(request, 'Сообщение успешно отправлено!')
+            return render(request, 'news/contact.html')
         context = {
             'form': form
         }
@@ -181,6 +170,7 @@ class NewsCreateView(OnlyLoggedSuperUser, CreateView):
     model = News
     form_class = NewsForm
     template_name = 'crud/news_create.html'
+
     success_url = reverse_lazy('home_page')
 
 

@@ -6,6 +6,18 @@
 {% block content %}
 
     <div class="container">
+      {% if messages %}
+      <div class="alert alert-success" role="alert">
+        {% for message in messages %}
+          {{ message }}
+        {% endfor %}
+      </div>
+      <script>
+        setTimeout(function() {
+          document.querySelector('.alert').style.display = 'none';
+        }, 5000); // hide the alert after 5 seconds
+      </script>
+    {% endif %}
 
     <section id="contentSection">
     <div class="row">

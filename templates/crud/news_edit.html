@@ -5,73 +5,75 @@
 {% block title %} {{ news.title }} {% endblock title %}
 
 {% block content %}
+
     <div class="container">
         <h2 class="text-center">{% blocktrans %}Изменить новость{% endblocktrans %}</h2>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">
                 <div class="col-md-6">
-                        <label for="{{ form.title.id_for_label }}">Заголовок:</label>
+                        <label for="{{ form.title.id_for_label }}">{% blocktrans %}Заголовок{% endblocktrans %}:</label>
                         {{ form.title }}
                 </div>
                 <div class="col-md-6">
-                        <label for="{{ form.title_ru.id_for_label }}">Заголовок (Russian):</label>
+                        <label for="{{ form.title_ru.id_for_label }}">{% blocktrans %}Заголовок{% endblocktrans %} (Russian):</label>
                         {{ form.title_ru }}
                 </div>
             </div><br>
             <div class="row">
                 <div class="col-md-6">
-                    <label for="{{ form.title_uz.id_for_label }}">Sarlavha (Uzbek):</label>
+                    <label for="{{ form.title_uz.id_for_label }}">{% blocktrans %}Заголовок{% endblocktrans %} (Uzbek):</label>
                     {{ form.title_uz }}
                 </div>
                 <div class="col-md-6">
-                    <label for="{{ form.title_en.id_for_label }}">Title (English):</label>
+                    <label for="{{ form.title_en.id_for_label }}">{% blocktrans %}Заголовок{% endblocktrans %} (English):</label>
                     {{ form.title_en }}
                 </div>
             </div><br>
 
             <div class="form-group">
-                <label for="{{ form.slug.id_for_label }}">Slug:</label>
+                <label for="{{ form.slug.id_for_label }}">{% blocktrans %}Slug{% endblocktrans %}:</label>
                 {{ form.slug }}
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-                    <label for="{{ form.body.id_for_label }}">Body:</label>
+                    <label for="{{ form.body.id_for_label }}">{% blocktrans %}Текст{% endblocktrans %}:</label>
                     {{ form.body }}
                 </div>
                 <div class="col-md-6">
-                    <label for="{{ form.body_ru.id_for_label }}">Body (Russian):</label>
+                    <label for="{{ form.body_ru.id_for_label }}">{% blocktrans %}Текст{% endblocktrans %} (Russian):</label>
                     {{ form.body_ru }}
                 </div>
             </div><br>
             <div class="row">
                 <div class="col-md-6">
-                    <label for="{{ form.body_uz.id_for_label }}">Body (Uzbek):</label>
+                    <label for="{{ form.body_uz.id_for_label }}">{% blocktrans %}Текст{% endblocktrans %} (Uzbek):</label>
                     {{ form.body_uz }}
                 </div>
                 <div class="col-md-6">
-                    <label for="{{ form.body_en.id_for_label }}">Body (English):</label>
+                    <label for="{{ form.body_en.id_for_label }}">{% blocktrans %}Текст{% endblocktrans %} (English):</label>
                     {{ form.body_en }}
                 </div>
             </div><br>
 
             <div class="form-group">
-                <label for="{{ form.image.id_for_label }}">Фото:</label>
+                <label for="{{ form.image.id_for_label }}">{% blocktrans %}Фото{% endblocktrans %}</label>
                 {{ form.image }}
             </div>
 
             <div class="row"><br>
                 <div class="col-md-6">
-                    <label for="{{ form.category.id_for_label }}">Категория:</label>
+                    <label for="{{ form.category.id_for_label }}">{% blocktrans %}Категория:{% endblocktrans %}</label>
                     {{ form.category }}
                 </div>
                 <div class="col-md-6">
-                    <label for="{{ form.status.id_for_label }}">Статус:</label>
+                    <label for="{{ form.status.id_for_label }}">{% blocktrans %}Статус:{% endblocktrans %}</label>
                     {{ form.status }}
                 </div>
             </div><br>
-            <button style="width: 100%" type="submit" class="btn btn-primary btn-shadow">Создать</button><br>
+            <button style="width: 100%" type="submit" class="btn btn-primary btn-shadow">{% blocktrans %}Изменить{% endblocktrans %}</button><hr>
         </form>
     </div>
+
 {% endblock content %}

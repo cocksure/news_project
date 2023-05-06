@@ -9,20 +9,20 @@
         <div class="container">
         <form class="form_login" method="post" >{% csrf_token %}
             <div class="form-group">
-                <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+                <label for="{{ form.username.id_for_label }}">{% blocktrans %}Имя пользователя{% endblocktrans %}</label>
                 {{ form.username }}
             </div>
             <div class="form-group">
-                <label for="{{ form.password.id_for_label }}">Пароль</label>
+                <label for="{{ form.password.id_for_label }}">{% blocktrans %}Пароль{% endblocktrans %}</label>
                 {{ form.password }}
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-                    <button type="submit" class="btn btn-primary form-btn btn-shadow" style="width: 100%; border-radius: 5px">Войти</button>
+                    <button type="submit" class="btn btn-primary form-btn btn-shadow" style="width: 100%; border-radius: 5px">{% blocktrans %}Войти{% endblocktrans %}</button>
                 </div>
                 <div class="col-md-6 ">
-                    <a href="{% url 'user_register' %}" class="btn btn-primary form-btn btn-shadow" style="width: 100%; border-radius: 5px">Регистрация</a>
+                    <a href="{% url 'user_register' %}" class="btn btn-primary form-btn btn-shadow" style="width: 100%; border-radius: 5px">{% blocktrans %}Регистрация{% endblocktrans %}</a>
                 </div>
             </div>
             <h5>

@@ -66,7 +66,6 @@
                 <li>
                   <figure class="bsbig_fig"> <a href="{{ main.get_absolute_url }}" class="featured_img"> <img class="img-thumbnail rihgt-side__img" alt="" src="{{ main.image.url }}"> <span class="overlay"></span> </a>
                     <figcaption> <a href="{{ main.get_absolute_url }}">{{ main.title | truncatewords:15 }}</a> </figcaption>
-                    <figcaption> <a href="{{ main.get_absolute_url }}">{{ main.title | truncatewords:15 }}</a> </figcaption>
                     <p>{{ main.body | truncatewords:25 }}</p>
                       <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for main %}
                   </figure>

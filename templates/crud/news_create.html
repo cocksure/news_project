@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="container ">
-        <h1>Создат новость</h1><hr>
+        <h1>{% blocktrans %}Добавить новость{% endblocktrans %}</h1><hr>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">

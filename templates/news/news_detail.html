@@ -30,7 +30,7 @@
                         <div class="form-group">
                             {{ comment_form.body }}
                         </div>
-                        <button type="submit" class="btn btn-primary">{% blocktrans %}Submit{% endblocktrans %}</button>
+                        <button type="submit" class="btn btn-primary">{% blocktrans %}Отправить{% endblocktrans %}</button>
                     </form>
                 </div>
             </div>
@@ -53,7 +53,7 @@
         <div class="col-md-12">
             <p class="text-left" style="padding: 10px">{{ news.body }}</p>
         </div>
-    </div>
+    </div><hr>
 
     {% if request.user.is_authenticated and request.user.is_superuser %}
         <div class="row">

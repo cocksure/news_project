@@ -15,6 +15,7 @@ django-makemessages-xgettext==0.1.1
 django-modeltranslation==0.18.9
 Email-01==1.0.0
 gettex==1.0
+gunicorn==20.1.0
 kombu==5.3.1
 Pillow==9.4.0
 prompt-toolkit==3.0.38

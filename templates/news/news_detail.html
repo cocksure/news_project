@@ -96,6 +96,10 @@
                 {{ comment.user|upper }}
                 <span class="text=muted">
                     {{ comment.created_time }}
+                    {% if comment.user == request.user %}
+                        <a href="#"><i class="bi bi-pencil-square"></i></a> |
+                        <a href="#"><i class="bi bi-trash3-fill"></i></a>
+                    {% endif %}
                 </span>
             </p>
         {{ comment.body | linebreaks }}

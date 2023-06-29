@@ -1,13 +1,15 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import TemplateView, ListView, UpdateView, CreateView, DeleteView
 from hitcount.utils import get_hitcount_model
 from news_project.custom_permissions import OnlyLoggedSuperUser
-from .models import News, Category
+from .models import News, Category, Comment
 from .forms import ContactForm, CommentForm, NewsForm, NewsUpdateForm
 from hitcount.views import HitCountMixin
 from django.contrib import messages
@@ -109,7 +111,7 @@ class InternetNewsView(ListView):
     context_object_name = 'internet_news'
 
     def get_queryset(self):
-        news = self.model.published.all().filter(category__id=5)
+        news = self.model.published.all().filter(category__id=7)
         return news
 
 

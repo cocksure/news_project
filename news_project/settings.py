@@ -45,6 +45,9 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
 ROOT_URLCONF = 'news_project.urls'
 
 TEMPLATES = [
@@ -152,5 +155,4 @@ EMAIL_USE_SSL = False
 
 LOGIN_URL = 'login'
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 

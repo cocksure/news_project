@@ -10,8 +10,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = config('DEBUG', default=False, cast=bool)
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
+# DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -124,11 +124,11 @@ LOCALE_PATHS = BASE_DIR, 'locale'
 STATIC_URL = 'static/'
 
 #local
-STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATICFILES_DIRS = [BASE_DIR / 'static']
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# STATIC_ROOT = "home/djangomo/web-production-4da64.up.railway.app/django/staticfiles"
-
+STATIC_ROOT = "/home/djangomo/web-production-4da64.up.railway.app/django/staticfiles"
+STATICFILES_DIRS = ("/home/djangomo/web-production-4da64.up.railway.app/django/static")
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -136,9 +136,9 @@ STATICFILES_FINDERS = [
 ]
 
 MEDIA_URL = 'media/'
-
+MEDIA_ROOT = "/home/djangomo/web-production-4da64.up.railway.app/django/media"
 #local
-MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

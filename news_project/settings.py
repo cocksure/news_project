@@ -11,7 +11,8 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = config('DEBUG', default=False, cast=bool)
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
+
 ALLOWED_HOSTS = ["*"]
 
 # Application definition
@@ -44,8 +45,6 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 ROOT_URLCONF = 'news_project.urls'
@@ -128,6 +127,9 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# STATIC_ROOT = "home/djangomo/web-production-4da64.up.railway.app/django/staticfiles"
+
+
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -155,4 +157,5 @@ EMAIL_USE_SSL = False
 
 LOGIN_URL = 'login'
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 

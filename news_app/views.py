@@ -111,7 +111,7 @@ class InternetNewsView(ListView):
     context_object_name = 'internet_news'
 
     def get_queryset(self):
-        news = self.model.published.all().filter(category__id=7)
+        news = self.model.published.all().filter(category__id=5)
         return news
 
 
